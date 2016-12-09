@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 전체적인 Raycast를 담당할 스크립트
+/// </summary>
 public class RaycastManager : MonoBehaviour
 {
     //RaycastHit2D 소환에 넣어 줄 벡터.
@@ -21,17 +24,18 @@ public class RaycastManager : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// Overlap로 체크
     /// </summary>
-    public void checkOverlap()
+    public void checkOverlap(GameObject gameObject)
     {
-        _checkOverlap();
+        _checkOverlap(gameObject);
     }
-    private void _checkOverlap()
+    private void _checkOverlap(GameObject gameObject)
     {
         colliderList = Physics2D.OverlapCircleAll
-            ((Vector2)rayHit.transform.position, findDistance);
+            ((Vector2)gameObject.transform.position, findDistance);
 
         foreach (Collider2D colRe in colliderList)
             Debug.Log("Re : " + colRe.name);
@@ -71,7 +75,8 @@ public class RaycastManager : MonoBehaviour
             rayHit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
             //받아온 값이 있을 경우
-            if (rayHit) {
+            if (rayHit)
+            {
                 Debug.Log(rayHit.collider.name);
                 IsChangeBody(rayHit.collider.gameObject);
             }
@@ -85,7 +90,7 @@ public class RaycastManager : MonoBehaviour
     /// <param name="_rayHit"></param>
     private void IsChangeBody(GameObject _rayHit)
     {
-        checkOverlap();
+        checkOverlap(_rayHit);
 
         foreach (Collider2D colRe in colliderList) { 
             if (_rayHit == colRe.gameObject)
