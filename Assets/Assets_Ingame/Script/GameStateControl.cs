@@ -23,5 +23,5 @@ public class GameStateControl : MonoBehaviour {
         Time.timeScale = 1.0f;
     }
 
-
+    
 }
