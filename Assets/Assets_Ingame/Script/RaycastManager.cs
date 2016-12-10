@@ -21,9 +21,9 @@ public class RaycastManager : MonoBehaviour
     private RaycastHit2D rayHit;
 
     //근처 범위에 있는 도형 리스트
-    private Collider2D[] colliderList;
+    public Collider2D[] colliderList;
     //찾는 오브젝트와의 거리 제한.
-    public float findDistance = 1.0f;
+    public float findDistance = 10.0f;
 
 
     void Start()
@@ -48,12 +48,12 @@ public class RaycastManager : MonoBehaviour
         colliderList = Physics2D.OverlapCircleAll
             ((Vector2)gameObject.transform.position, findDistance);
 
-//        PrintList();
+    //    PrintList();
     }
     private void PrintList()
     {
         foreach (Collider2D colRe in colliderList)
-            Debug.Log("Re : " + colRe.name);
+            Debug.Log(">> : " + colRe.name);
     }
 
     /// <summary>
@@ -97,30 +97,42 @@ public class RaycastManager : MonoBehaviour
             //받아온 값이 있을 경우
             if (rayHit)
             {
-                //체크받은 값을 배열에 저장
-                checkOverlap(rayHit.collider.gameObject);
-                checkList(rayHit.collider.gameObject);
+                if (rayHit.collider.gameObject.layer == 8)
+                {
+                    //체크받은 값을 배열에 저장
+                    checkOverlap(rayHit.collider.gameObject);
+                    //현재 오브젝트가 범위 안에 있는가?
+                    ColCheck(GameManager.gameManager.GetSelectObject());
+                }
             }
             else Debug.Log("$$ ERROR :: It is NULL");
         }
     }
 
-    public bool checkList(GameObject rayHit)
+
+    public bool ColCheck(GameObject thisObject)
     {
-        bool isHere = false;
+        bool check = false;
 
         foreach (Collider2D colRe in colliderList)
         {
-            if (rayHit == colRe.gameObject)
+            if (thisObject == colRe.gameObject)
             {
-                isHere = true;
-                GameManager.gameManager.RobotChange();
+                Debug.Log("YEEEEEEEEEEEEEE");
+
+                GameManager.gameManager.RobotChange(rayHit.collider.gameObject);
+                check = true;
             }
             else
             {
-                isHere = false;
+                Debug.Log("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
             }
         }
-        return isHere;
+        return check;
+    }
+
+    public Collider2D[] getColliderList()
+    {
+        return colliderList;
     }
 }
