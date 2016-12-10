@@ -23,5 +23,8 @@ public class GameStateControl : MonoBehaviour {
         Time.timeScale = 1.0f;
     }
 
-    
+    public void TouchLog(string logString)
+    {
+        Debug.Log(logString);
+    }
 }
