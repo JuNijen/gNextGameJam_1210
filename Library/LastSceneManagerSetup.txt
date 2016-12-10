@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Assets_Ingame/Scene/NijenTest.unity
+- path: Assets/Assets_Ingame/Scene/Chapter01/TutorialStage02.unity
   isLoaded: 1
   isActive: 1
