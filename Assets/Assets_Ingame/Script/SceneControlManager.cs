@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneControlManager : MonoBehaviour
 {
     public static SceneControlManager scManager;
-
-    public string sceneName;
-
+    
     private void Start()
     {
         scManager = GameObject.Find("GameManager")
