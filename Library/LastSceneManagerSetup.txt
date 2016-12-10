@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Assets_Ingame/Scene/Chapter01/TutorialStage01.unity
+  isLoaded: 1
+  isActive: 1
