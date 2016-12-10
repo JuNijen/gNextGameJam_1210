@@ -105,7 +105,7 @@ public class RaycastManager : MonoBehaviour
                     ColCheck(GameManager.gameManager.GetSelectObject());
                 }
             }
-            else Debug.Log("$$ ERROR :: It is NULL");
+            //else Debug.Log("$$ ERROR :: It is NULL");
         }
     }
 
@@ -118,14 +118,14 @@ public class RaycastManager : MonoBehaviour
         {
             if (thisObject == colRe.gameObject)
             {
-                Debug.Log("YEEEEEEEEEEEEEE");
+                //Debug.Log("YEEEEEEEEEEEEEE");
 
                 GameManager.gameManager.RobotChange(rayHit.collider.gameObject);
                 check = true;
             }
             else
             {
-                Debug.Log("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
+               // Debug.Log("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
             }
         }
         return check;
