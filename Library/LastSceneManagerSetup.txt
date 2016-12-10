@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Assets_Ingame/Scene/Chapter01/TutorialStage01.unity
+- path: Assets/Assets_Ingame/Scene/Chapter02/NormalStage02.unity
   isLoaded: 1
   isActive: 1
