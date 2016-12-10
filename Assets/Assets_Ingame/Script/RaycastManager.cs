@@ -6,6 +6,15 @@ using System.Collections;
 /// </summary>
 public class RaycastManager : MonoBehaviour
 {
+    public static RaycastManager raycastManager;
+    public static RaycastManager getRaycastManager()
+    {
+        return raycastManager;
+    }
+    
+    //OverlapC해주는 범위를 설정 해 줄 필요가 있다.
+
+
     //RaycastHit2D 소환에 넣어 줄 벡터.
     private Vector2 mousePosition;
     //Ray의 Hit 값을 받아 올 변수
@@ -17,12 +26,14 @@ public class RaycastManager : MonoBehaviour
     public float findDistance = 1.0f;
 
 
-
+    void Start()
+    {
+        raycastManager = this;
+    }
     void Update()
     {
-        Raycast2DHit();
+        _Raycast2DHit();
     }
-
 
 
     /// <summary>
@@ -37,6 +48,10 @@ public class RaycastManager : MonoBehaviour
         colliderList = Physics2D.OverlapCircleAll
             ((Vector2)gameObject.transform.position, findDistance);
 
+//        PrintList();
+    }
+    private void PrintList()
+    {
         foreach (Collider2D colRe in colliderList)
             Debug.Log("Re : " + colRe.name);
     }
@@ -65,7 +80,12 @@ public class RaycastManager : MonoBehaviour
     /// <summary>
     /// Ray를 쏴서 값을 받아온다.
     /// </summary>
-    private void Raycast2DHit()
+    ///
+    public void Raycast2DHit()
+    {
+        _Raycast2DHit();
+    }
+    private void _Raycast2DHit()
     {
         vector2MousePosition();
 
@@ -77,28 +97,30 @@ public class RaycastManager : MonoBehaviour
             //받아온 값이 있을 경우
             if (rayHit)
             {
-                Debug.Log(rayHit.collider.name);
-                IsChangeBody(rayHit.collider.gameObject);
+                //체크받은 값을 배열에 저장
+                checkOverlap(rayHit.collider.gameObject);
+                checkList(rayHit.collider.gameObject);
             }
             else Debug.Log("$$ ERROR :: It is NULL");
         }
     }
 
-    /// <summary>
-    /// 추후 로봇을 깨우는 곳에 쓰일 예정이다.
-    /// </summary>
-    /// <param name="_rayHit"></param>
-    private void IsChangeBody(GameObject _rayHit)
+    public bool checkList(GameObject rayHit)
     {
-        checkOverlap(_rayHit);
+        bool isHere = false;
 
-        foreach (Collider2D colRe in colliderList) { 
-            if (_rayHit == colRe.gameObject)
+        foreach (Collider2D colRe in colliderList)
+        {
+            if (rayHit == colRe.gameObject)
             {
-                //현재로봇.isActive = false;
-                //_rayHit.wake();
+                isHere = true;
+                GameManager.gameManager.RobotChange();
+            }
+            else
+            {
+                isHere = false;
             }
         }
+        return isHere;
     }
-
 }

@@ -6,6 +6,4 @@ using System.Collections;
 /// </summary>
 public class FollowingCamera : MonoBehaviour
 {
-
-
 }
