@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        FirstRobot();
     }
    
 

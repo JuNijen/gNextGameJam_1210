@@ -53,14 +53,14 @@ public class RobotsBehavior : MonoBehaviour
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
 
-        transform.localScale = new Vector3(1.0f, 0.7f, 0.0f);
+//        transform.localScale = new Vector3(1.0f, 0.7f, 0.0f);
     }
     private void ColorRed()
     {
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.red;
 
-        transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
+//        transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
     }
 
 
